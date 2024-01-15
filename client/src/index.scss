@@ -1,0 +1,35 @@
+@import "reset";
+
+@font-face {
+  font-family: "Helevetica Now Regular";
+  src: url("./assets/font/HelveticaNowText-Regular.otf");
+}
+
+@font-face {
+  font-family: "Helevetica Now Medium";
+  src: url("./assets/font/HelveticaNowText-Medium.otf");
+}
+
+@font-face {
+  font-family: "Helevetica Now Bold";
+  src: url("./assets/font/HelveticaNowText-Bold.otf");
+}
+
+:root{
+  --pl-color: #fff;
+  --pd-color: #111;
+  --phl-color: #e5e5e5;
+  --sg-color: #f5f5f5;
+  --pf-regular:  "Helevetica Now Regular", sans-serif;
+  --pf-medium:  "Helevetica Now Medium", sans-serif;
+  --pf-bold:  "Helevetica Now Bold", sans-serif;
+}
+
+*{
+  font-family: var(--pf-regular) !important;
+}
+
+a{
+  text-decoration: none;
+  color: var(--pd-color);
+}

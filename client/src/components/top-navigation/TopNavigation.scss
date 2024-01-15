@@ -1,0 +1,34 @@
+.top-navigation{
+    height: 36px;
+    background-color: var(--sg-color);
+}
+
+.top-navigation__wrapper{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top-navigation__list{
+    display: flex;
+    gap: 0 1rem;
+    font-size: 12px;
+    li{
+        position: relative;
+        border-right: 2px solid var(--pd-color);
+        padding-right: 12px;
+
+        &:last-child{
+            border: none;
+        }
+    }
+}
+
+.logo-wrapper{
+    display: flex;
+    gap: 0 1rem;
+    svg{
+        font-size: 20px;
+    }
+}
