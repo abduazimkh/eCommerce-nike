@@ -1,0 +1,26 @@
+.dashboard{
+    display: flex;
+}
+
+.dashboard-content{
+    flex: 1;
+    padding: 0 2rem;
+}
+
+.dashboard-header{
+    padding: 1rem 0;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--sf-color);
+
+    h2{
+        font-size: 2rem;
+        font-family: var(--pf-medium);
+    }
+}
+
+.dashboard-info{
+    padding: 2rem 0;
+}

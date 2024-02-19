@@ -1,0 +1,131 @@
+.single-product{
+    margin: 4rem 0;
+}
+
+.single-carousel{
+    display: flex;
+    align-items: flex-start;
+    gap: 0 2rem;
+
+    &__main{
+        max-width: 600px;
+        position: relative;   
+
+        .navigation-carousel{
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            z-index: 2;
+            display: flex;
+            gap: 0 10px;
+
+            button{
+                background-color: var(--sg-color);
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img{
+                    width: 10px;
+                }
+            }
+        }
+    }
+}
+
+.swiper-main-image{
+    width: 100%;
+}
+.swiper-thumbs{
+    margin: 0;
+    width: 70px;
+
+    .swiper-wrapper{
+        width: 100%;
+        display: flex;
+        flex-direction: column !important;
+        gap: 1rem 0;
+        .swiper-slide{
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100% !important;
+        }
+    }
+
+    img{
+        width: 100%;
+    }
+}
+
+
+.product-actions{
+    flex: 1;
+
+    h1{
+        font-size: 1.5rem;
+        font-family: var(--pf-medium);
+    }
+
+    p{
+        margin: 2rem 0;
+    }
+
+    button{
+        width: 100%;
+    }
+}
+
+
+
+.variants{
+    margin-bottom: 4rem;
+    &__wrapper{
+        display: grid;
+        grid-template-columns: repeat(2, 100px);
+        gap: 0.5rem 1rem;
+    }
+    h5{
+        text-transform: capitalize;
+        font-family: var(--pf-medium);
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+}
+
+
+.product-variant{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border: 1px solid lightgray;
+     padding: 10px 0;
+     cursor: pointer;
+ 
+     &-active{
+         border: 1px solid #222;
+     }
+ }
+
+ .add-to-cart-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid gray;
+    border-radius: 40px;
+    button{
+        cursor: pointer;
+        padding: 1rem 0;
+        width: 55px;
+        border-radius: 50%;
+    }
+ }
+
+ .likedby-wrapper{
+    margin-top: 2rem;
+    display: flex;
+    gap: 0 5px;
+    align-items: center;
+ }

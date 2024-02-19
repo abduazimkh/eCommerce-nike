@@ -28,12 +28,10 @@ const Product = new Schema({
     },
     featured: {
         type: Boolean,
-        default: true,
         required: true
     },
     visible_in_store: {
         type: Boolean,
-        default: true,
         required: true
     },
     variants: {

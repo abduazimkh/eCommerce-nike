@@ -19,7 +19,7 @@ user.post("/register", async (req, res) => {
     }
 
     if(user){
-        return res.status.json({
+        return res.status(409).json({
             payload: {
                 messages: {
                     message_uz: "Foydalanuvchi allaqachon mavjud",
@@ -57,7 +57,7 @@ user.post("/login", async (req, res) => {
     let user = await User.findOne({email: email});
 
     if(!user){
-        return res.status.json({
+        return res.status(401).json({
             payload: {
                 messages: {
                     message_uz: "Foydalanuvchi mavjud emas",
@@ -85,10 +85,17 @@ user.post("/login", async (req, res) => {
 
 user.get("/profile", verify_user, async (req, res) => {
     const email = req.user.email;
-    const user = await User.findOne({email: email});
-    res.status(200).json({
-        payload: user
-    })
+    const user = await User.findOne({email: email}).populate('liked')
+    .exec((err, user) => {
+        if (err) {
+            console.error(err);
+            } else {
+                res.status(200).json({
+            payload: user
+        })
+        }
+    });;
+    
 })
 
 user.get("/profile/liked-products", verify_user, async (req, res) => {

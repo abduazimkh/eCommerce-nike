@@ -1,0 +1,66 @@
+[
+    {
+        "title" : "New & Featured",
+        "link" : "/new&featured",
+        "sub_routes" : [
+            {
+                "sub_title": "New & Featured",
+                "sub_links" : [
+                    {
+                        "sub_link_title": "New Arrivals",
+                        "link" : "/new-arrivals"
+                    },
+                    {
+                        "sub_link_title": "Best Seller",
+                        "link" : "/best-seller"
+                    }
+                ]
+            },
+            {
+                "sub_title": "Limited Time",
+                "sub_links" : [
+                    {
+                        "sub_link_title": "New Year Sale: Up to 50% Off",
+                        "link" : "/new-year"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title" : "Men",
+        "link" : "/category/mens",
+        "sub_routes" : [
+            {
+                "sub_title": " Men New & Featured",
+                "sub_links" : [
+                    {
+                        "sub_link_title": "Men New Arrivals",
+                        "link" : "/category/mens/men-new-arrivals"
+                    },
+                    {
+                        "sub_link_title": "Men Best Seller",
+                        "link" : "/category/mens/men-best-seller"
+                    }
+                ]
+            },
+            {
+                "sub_title": "Men Limited Time ",
+                "sub_links" : [
+                    {
+                        "sub_link_title": "Men New Year Sale: Up to 50% Off",
+                        "link" : "/category/mens/men-new-year"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title" : "Women",
+        "link" : "/category/womens"
+    },
+    {
+        "title" : "Kids",
+        "link" : "/category/kids"
+    }
+]

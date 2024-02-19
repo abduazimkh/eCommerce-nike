@@ -1,0 +1,31 @@
+.cart{
+    margin-top: 3rem;
+    h1{
+        font-size: 3rem;
+        margin-bottom: 2rem;
+    }
+}
+
+.cart-item{
+    display: flex;
+    gap: 0 1rem;
+    p{
+        font-size: 20px;
+        margin: 5px;
+        &:first-child{
+            color: var(--pd-color);
+            margin-bottom: 10px;
+        }
+        color: gray;
+    }
+
+    .cart-item__actions{
+        display: flex;
+        align-items: center;
+        gap: 0 1rem;
+        margin-top: 1.5rem;
+        button{
+            margin: 0;
+        }
+    }
+}

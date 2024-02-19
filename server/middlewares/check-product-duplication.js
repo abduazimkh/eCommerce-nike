@@ -6,7 +6,7 @@ const check_product_duplication = async (req, res, next) => {
     const { product_name } = req.body
     const product = await Product.findOne({product_name})
     if(product){
-        fs.readdir("/tmp", (err, files) => {
+        fs.readdir("./tmp", (err, files) => {
             if (err) throw err;
             for (const file of files) {
                 fs.unlink(path.join("tmp", file), (err) => {

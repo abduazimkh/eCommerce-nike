@@ -6,6 +6,7 @@ const user = require("./routes/user");
 const admin = require("./routes/admin");
 const product = require("./routes/products");
 const sales = require("./routes/sales");
+const categories = require("./routes/categories");
 require("dotenv/config");
 const PORT = process.env.PORT || 2000
 const server = express();
@@ -27,6 +28,7 @@ server.use("/api/auth", user)
 server.use("/api/product", product)
 server.use("/api/sales", sales)
 server.use("/api/admin", admin)
+server.use("/api/category", categories)
 
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

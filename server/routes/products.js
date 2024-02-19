@@ -50,15 +50,14 @@ products.post("/create", verify_admin, upload.array("product_images"), check_pro
         fs.unlinkSync(path);
     }
 
-    let transformedProductImages = product_images.map(url => url.replace(/upload\//g, "upload/c_fit,h_500,w_500/"));
     const product = await Product.create({
         product_name,
-        product_images: transformedProductImages,
+        product_images: product_images,
         category,
         variants: JSON.parse(variants),
         created_at: new Date().getTime(),
-        featured: featured,
-        visible_in_store: visible_in_store,
+        featured: featured === "true" ? true : false,
+        visible_in_store: visible_in_store === "true" ? true : false,
         description,
         number_in_stock: +number_in_stock,
         product_type
@@ -77,7 +76,7 @@ products.post("/create", verify_admin, upload.array("product_images"), check_pro
 
 products.put("/update/:id", verify_admin, upload.array("product_images"), async (req, res) => {
     const id = req.params.id
-    let { product_name, original_price, sale_price, category, description, number_in_stock, product_type } = req.body;
+    let { product_name, original_price, sale_price, category, description, number_in_stock, product_type, variants, featured, visible_in_store } = req.body;
 
     const product = await Product.findById(id);
     product.product_images.forEach((imgurl) => {
@@ -110,6 +109,7 @@ products.put("/update/:id", verify_admin, upload.array("product_images"), async 
 
     let transformedProductImages = product_images.map(url => url.replace(/upload\//g, "upload/c_fit,h_500,w_500/"));
 
+    console.log(Boolean(featured), visible_in_store)
     const updatedProduct = await Product.findByIdAndUpdate({ _id: id}, {
         product_name,
         original_price: +original_price,
@@ -118,10 +118,13 @@ products.put("/update/:id", verify_admin, upload.array("product_images"), async 
         category,
         description,
         number_in_stock: +number_in_stock,
-        product_type
+        product_type,
+        variants: JSON.parse(variants),
+        featured: featured === "true" ? true : false,
+        visible_in_store: visible_in_store === "true" ? true : false
     })
 
-    res.status(200).json({
+    res.status(204).json({
         payload: {
             product: updatedProduct,
             messages: {
@@ -238,7 +241,7 @@ products.get("/all", async (req, res) => {
 });
 
 products.get("/reel", async (req, res) => {
-    const products = await Product.find({featured: true}).limit(8)
+    const products = await Product.find({featured: true, product_type: "shoes"}).limit(8)
     res.json({
         payload: products
     });
@@ -251,28 +254,28 @@ products.get("/most-popular", async (req, res) => {
     })
 })
 
-products.get("/by/:type", async (req, res) => {
-    const { type } = req.query
-    const { category } = req.query
-    const products = await Product.find({$or:[
-        {"product_type": type},
-        {"category": category},
-        {"visible_in_store": true}
-    ]})
-    res.json({
-        payload: products
-    })
+products.get("/by", async (req, res) => {
+    try {
+        const { type, category } = req.query;
+        const products = await Product.find({category: category});
+        res.json({
+            payload: products
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 })
 
 products.patch("/:product_id/like", verify_user, async (req, res) => {
     const product_id = req.params.product_id;
-    const username = req.user.username;
+    const email = req.user.email;
     const user_id = req.user._id;
 
     const product = await Product.findById(product_id);
-    if (!product.likedby.includes(username)) {
+    if (!product.likedby.includes(email)) {
         await Product.findByIdAndUpdate(product_id, {
-            $push: { likedby: username },
+            $push: { likedby: email },
             $inc: {
                 likes: 1
             }
@@ -288,7 +291,7 @@ products.patch("/:product_id/like", verify_user, async (req, res) => {
                     message_uz: "Yoqtirildi qo'shildi"
                 },
                 product_id: product._id,
-                likedby: username
+                likedby: email
             }
         })
     } 
@@ -300,23 +303,32 @@ products.patch("/:product_id/like", verify_user, async (req, res) => {
                     message_uz: "Bu mahsulot allaqachon yoqtirilgan"
                 },
                 product_id: product._id,
-                likedby: username
+                likedby: email
             }
         })
     }
 })
 
+products.get("/:product_id", async (req, res) => {
+    const productId = req.params.product_id;
+    const product = await Product.findById(productId);
+
+    res.status(200).json({
+        payload: [product]
+    })
+} )
+
 products.patch("/:product_id/unlike", verify_user, async (req, res) => {
     const product_id = req.params.product_id;
-    const username = req.user.username;
+    const email = req.user.email;
     const user_id = req.user._id;
     const product = await Product.findById(product_id);
 
-    if (product.likedby.includes(username)) {
+    if (product.likedby.includes(email)) {
         await Product.findByIdAndUpdate(product_id,
             {
                 $pull: {
-                    likedby: username
+                    likedby: email
                 },
                 $inc: {
                     likes: -1
@@ -332,7 +344,7 @@ products.patch("/:product_id/unlike", verify_user, async (req, res) => {
                         message_uz: "Yoqtirilmadi"
                     },
                     product_id: product._id,
-                    likedby: username
+                    likedby: email
                 }
             })
     }
@@ -344,7 +356,7 @@ products.patch("/:product_id/unlike", verify_user, async (req, res) => {
                     message_uz: "Bu mahsulot allaqachon yoqtirilmagan"
                 },
                 product_id: product._id,
-                likedby: username
+                likedby: email
             }
         })
     }

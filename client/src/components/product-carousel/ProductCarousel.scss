@@ -1,0 +1,89 @@
+.product-carousel{
+    margin: 4rem 0;
+    cursor: pointer;
+}
+
+.product-carousel .swiper {
+  width: 100%;
+  height: 650px;
+}
+
+.product-carousel .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: linear-gradient(190deg, rgb(148, 152, 162) 0%, rgba(224,228,231,1) 50%, rgb(148, 152, 162) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  h5{
+    position: absolute;
+    bottom: 50px;
+    font-size: 1.6rem;
+    font-family: var(--pf-medium);
+  }
+}
+
+.product-carousel .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  mix-blend-mode: multiply;
+}
+
+.current-slide-index {
+   background-color: var(--sf-color); 
+   padding: 10px 16px;
+   color: #fff;
+   border-radius: 30px;
+   position: absolute;
+   top: 40px;
+   right: 40px;
+   opacity: 0;
+   transition: 0.5s;
+}
+
+.swiper-slide.swiper-slide-active .current-slide-index{
+    opacity: 1;
+}
+
+.product-carousel .swiper-button-prev{
+    background-color: var(--pl-color) !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    left: 84px;
+
+    &::after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-size: 20%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url("../../assets/prev-btn.svg");
+    }
+}
+
+.product-carousel .swiper-button-next{
+    background-color: var(--pl-color) !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    right: 84px;
+
+    &::after{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        content: "";
+        background-size: 20%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url("../../assets/next-btn.svg");
+    }
+}

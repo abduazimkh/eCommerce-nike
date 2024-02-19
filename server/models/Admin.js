@@ -2,10 +2,9 @@ const mongoose = require("mongoose");
 const Schema =  mongoose.Schema;
 
 const Admin = new Schema({
-    username: {
+    email: {
         type: String,
-        required: true,
-        unique: true
+        required: true    
     },
     promotedBy: {
         type: String,

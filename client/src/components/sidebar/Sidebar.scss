@@ -1,0 +1,53 @@
+.sidebar{
+    background: var(--phl-color);
+    max-width: 300px;
+    height: 100vh;
+    flex: 1;
+    padding: 2rem;
+    box-sizing: border-box;
+
+    &__top{
+        display: flex;
+        align-items: center;
+        h2{
+            font-family: var(--pf-medium);
+            font-size: 24px;
+        }
+        img{
+            height: 100px;
+        }
+    }
+
+    &__list{
+        display: flex;
+        flex-direction: column;
+        gap: 10px 0;
+        li{
+           
+            cursor: pointer;
+            border-radius: 5px;
+
+            &:hover{
+                background-color: var(--sg-color);
+            }
+
+            .sidebar-link{
+                display: flex;
+                padding: 1rem;
+                align-items: center;
+                border-radius: 5px;
+
+
+                &--active{
+                    background-color: var(--pd-color);
+                    color: var(--pl-color);
+                }
+            }
+
+            svg{
+                margin-right: 1rem;
+                font-size: 1.4rem;
+            }
+        }
+    }
+}

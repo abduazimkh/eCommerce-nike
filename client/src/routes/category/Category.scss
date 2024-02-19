@@ -1,0 +1,117 @@
+.category-wrapper{
+    display: flex;
+    padding: 1rem;
+    gap: 0 1rem;
+}
+
+.category-filter{
+    max-width: 300px;
+    flex: 1;
+    border: 1px solid gray;
+    height: calc(100vh - 2rem);
+    position: sticky;
+    top: 1rem;
+}
+
+.category-product__wrapper{
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+.category-product{
+    padding-bottom: 2rem;
+    height: 750px;
+}
+
+.category-product__img-wrapper{
+    width: 100%;
+    height: 630px;
+    background: linear-gradient(190deg, rgba(213, 213, 215, 0.217) 0%, rgba(224, 228, 231, 0.434) 50%, rgb(148, 152, 162) 100%);
+
+}
+
+.category-product__img{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    object-position: center 10%;
+    mix-blend-mode: multiply;
+}
+
+
+.category-product__content{
+    margin-top: 1rem;
+    
+    p{
+        height: auto;
+        transition: 0.1s ease-in-out;
+        opacity: 1;
+        margin: 5px 0;
+        &:nth-child(1){
+            font-family: var(--pf-medium);
+            font-size: 1.2rem;
+            color: orange;
+        }
+        &:nth-child(2){
+            color: var(--sf-color);
+        }
+
+        &:nth-child(3){
+            font-family: var(--pf-medium);
+            text-transform: capitalize;
+        }
+    }
+}
+
+.category-product__options-images{
+    display: flex;
+    align-items: center;
+    gap: 0 5px;
+    transform: scaleY(0.7);
+    height: 1px;
+    width: 1px;
+    opacity: 0;
+    transition: 0.2s;
+    img, video{
+        height: 100%;
+        object-fit: cover;
+        cursor: pointer;
+    }
+}
+
+.category-product__options-images-count{
+    background-color: var(--phl-color);
+    min-width: 50px;
+    height: 50px;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-product__options{
+    p{
+        margin-top: 1rem;
+        font-family: var(--pf-medium);
+    }
+}
+
+.category-product:hover{
+    .category-product__content p{
+        height: 1px;
+        opacity: 0;
+        transform-origin: top;
+        transform: scaleY(0.7);
+        margin: 0;
+    }
+
+    .category-product__options-images{
+        transform-origin: top;
+        transform: scaleY(1);
+        height: auto;
+        opacity: 1;
+    }
+}
+

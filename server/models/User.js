@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const User = new mongoose.Schema({
         email: {
             type: String,
-            required: true,
-            unique: true
+            required: true
         },
         first_name: {
             type: String,
@@ -23,10 +22,10 @@ const User = new mongoose.Schema({
             type: Array,
             default: []
         },
-        liked: {
-            type: Array,
-            default: []
-        },
+        liked: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Product"
+        }],
         registered_at: {
             type: Number
         },
