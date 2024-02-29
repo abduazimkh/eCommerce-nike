@@ -4,7 +4,6 @@ import Hero from "../../components/hero/Hero";
 import Main from "../../layout/Main";
 
 const Home = forwardRef<HTMLDivElement>((props, mainElement) => {
-  console.log(props);
  
   return (
     <>

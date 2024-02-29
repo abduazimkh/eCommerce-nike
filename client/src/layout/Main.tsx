@@ -7,7 +7,6 @@ import ProductCarousel from "../components/product-carousel/ProductCarousel";
 import { Container } from "../utils/Utils";
 
 const Main = () => {
-  // console.log(data)
   return (
     <main>
       <Container>

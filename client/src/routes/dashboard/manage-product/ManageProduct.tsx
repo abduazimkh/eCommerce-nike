@@ -9,7 +9,7 @@ import "./ManageProduct.scss"
 import { Product } from "../../../types/ElementTypes.d";
 import { imageUrlsToFileObjects } from "../../../helpers/modifier/convert-blob";
 
-let index = 0;
+// let index = 0;
 
 const ManageProduct = () => {
   const [featured, setFeatured] = useState<boolean>(false);
@@ -31,7 +31,6 @@ const ManageProduct = () => {
   const {data} = useFetch("/product/all");
 
   const onProductTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value)
     setProductType(event.target.value.trim());
   };
 
@@ -97,7 +96,7 @@ const ManageProduct = () => {
         }
       }
      if(!loading){
-        fetch(`http://localhost:2000/api/product/${editProduct ? "update" : "create"}${editProduct && `/${editProduct?._id}`}`,{
+        fetch(`http://localhost:2000/api/product/${editProduct ? "update" : "create"}${editProduct ? `/${editProduct?._id}` : ""}`,{
           method: editProduct ? "PUT" : "POST",
           headers: {
             "Authorization": "Bearer " + sessionStorage.getItem("token")
@@ -238,7 +237,7 @@ const ManageProduct = () => {
             <div className="product-image-select">
                 <div className="product-image-select__wrapper">
                 <div className="image-select">
-                      <input onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      <input onChange={(e: React.ChangeEvent<HTMLInputElement> | any) => {
                         if(e.target.files && e.target.files?.length > 5 ){
                           alert("Max files count is 5")
                         }
